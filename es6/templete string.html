@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>产品名</th>
+        <th>价格</th>
+        <th>数量</th>
+    </tr>
+    </thead>
+</table>
+<!--
+模板字符串:定义是(``),能够输出变量以及换行符,制表符等其它字符
+
+-->
+<script>
+let els=`<table border="1"><tr>
+    <td>11</td>
+    <td>11</td>
+    <td>11</td>
+    </tr></table>`;
+    document.getElementsByTagName("body")[0].innerHTML=els;
+    /*
+    变量输出使用${}
+     */
+    // var age=10;
+    // let str = `小明今年${age}岁`;
+    // console.log(str);
+    var carts={
+        status:1,
+        count:2,
+        data:[{
+            productName:"帝豪香烟",
+            quantity:10,
+            price:25
+        },
+            {
+                productName:"矿泉水",
+                quantity:100,
+                price:2.5
+            }
+        ],
+
+    }
+    var tab=document.querySelector("table");
+    for(var i=0;i<carts['data'].length;i++){
+        tab.innerHTML+=`
+    <tr>
+        <th>${carts['data'][i]["productName"]}</th>
+        <th>${carts['data'][i]["price"]}</th>
+        <th>${carts['data'][i]["quantity"]}</th>
+    </tr>
+    `
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    let和var区别
+    1,let块级作用域
+    2,let不能重复声明
+    3,let没有声明提升
+    4,let有暂时性死区
+     */
+    //块作用域
+    // {
+    //     let a=10;
+    //     var b=15
+    // }
+    // console.log(b);//15
+    // console.log(a);//报错
+    //不能重复声明
+    // let a=10;
+    // let a=15;
+    // console.log(a)
+// //声明提升
+//     console.log(a);//undefined
+//     var a=10;
+//     //相当于
+//     var a;
+//     console.log(a);
+//     a=10;
+    //console.log(a);//没有变量提升,报错
+    //let a=10;
+    //暂时性死区
+    // var a=10;
+    // if (true){
+    //     console.log(a);//报错
+    //     let a=15;
+    // }
+
+    //常量一经定义就不能改变的量
+    // const a=10;
+    // console.log(a);
+
+</script>
+</html>

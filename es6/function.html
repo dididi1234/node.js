@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    函数的默认值
+     */
+    //es5
+    // function text(a,b) {
+    //     if (typeof a=="undefined"){
+    //         a=10;
+    //     }
+    //     if (typeof b=="undefined"){
+    //         a=20;
+    //     }
+    //     console.log(a,b)
+    // }
+    // text()
+    // function  text(a,b) {
+    //     a=a||10;
+    //     b=b||20;
+    //     console.log(a, b);
+    // }
+    // text()
+     //console.log(10 && 20);
+    // console.log(0 && 20);
+     //es6
+    //默认参数放在参数列表末尾
+    // function text(a=10,b=15,c) {
+    //     console.log(a,b,c);
+    // }
+
+    //rest 参数
+    /*
+    rest和arguments的异同点
+    1,相同点:都可以拿到参数列表
+    2,不同点:arguments是一个伪数组
+     */
+    // function text(...a) {
+    //     console.log(a);
+    //     console.log(arguments);
+    // }
+    // text(1,2,3,4,5)
+
+</script>
+</html>

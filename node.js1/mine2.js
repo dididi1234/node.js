@@ -1,0 +1,1 @@
+console.log("我是mine2模块")

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:50px;
+            height: 50px;
+            background-color: #000;
+            border-radius: 50%;
+            margin-left: 0;
+        }
+        .ball1{
+            background-color: red;
+        }
+        .ball2{
+            background-color: blue;
+        }
+        .ball3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="ball1"></div>
+<div class="ball2"></div>
+<div class="ball3"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var ball1=$(".ball1");
+    var ball2=$(".ball2");
+    var ball3=$(".ball3");
+    ball1.animate({
+        marginLeft:300
+    },2000,function () {
+        console.log("动画结束")
+        ball2.animate({
+            marginLeft:300
+        },2000,function () {
+            console.log("动画结束")
+            ball3.animate({
+                marginLeft:300
+            },2000,function () {
+                console.log("动画结束")
+                ball1.animate({
+                    marginLeft:0
+                },2000,function () {
+                    console.log("动画结束")
+                    ball2.animate({
+                        marginLeft:0
+                    },2000,function () {
+                        console.log("动画结束")
+                        ball3.animate({
+                            marginLeft:0
+                        },2000,function () {
+                            console.log("动画结束")
+
+                        })
+
+                    })
+
+                })
+
+            })
+
+        })
+    })
+</script>
+</html>

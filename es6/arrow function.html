@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // fn()
+    // var fn=function () {
+    //     console.log('a')
+    // }
+    // fn()
+    // function fn() {
+    //     console.log('b')
+    // }
+    // fn()
+    //箭头函数是对函数表达式的简写模式
+    //有参有返回
+   // var fn=function (x) {
+   //     return x+3;
+   // }
+   //  var fn=x=> x+3;
+   //  console.log(fn(10));
+    //有参无返回
+    // var fn=function (x) {
+    //     console.log(x);
+    // }
+    // var fn=x=>console.log(x)
+    // console.log(fn(10));
+    // var fn=function (x) {
+    //     x=x+10;
+    //     console.log(x)
+    // }
+    // var fn=x=>{
+    //     x+=10;
+    //     console.log(x)
+    // }
+    // fn(10)
+    // function fn(x,y) {
+    //     return x+y
+    // }
+    //var fn=(x,y)=>x+y
+    //console.log(fn(10,10))
+    // function fn() {
+    //     return 3+3*3;
+    // }
+    // var fn=()=>3+3*3;
+    // console.log(fn());
+    //箭头函数取决于上下文环境
+    //var num=4
+    // var obj={
+    //     num:3,
+    //     fn:()=>{
+    //         console.log(this.num)//4
+    //     }
+    // }
+    // obj.fn()
+   // var num=4
+   //  var obj={
+   //      num:3,
+   //      fn:function(){
+   //         return ()=>{
+   //             console.log(this.num)//3
+   //         }
+   //      }
+   //  }
+   //  obj.fn()()
+   //  var num=4
+   //  var obj={
+   //      num:3,
+   //      fn:function(){
+   //          return function(){
+   //              console.log(this.num)//4
+   //
+   //          }
+   //      }
+   //  }
+   //  obj.fn()()
+   // var num=4;
+   // var obj={
+   //     num:3,
+   //     fn:function () {
+   //         setTimeout(function () {
+   //             console.log(this.num);
+   //         },300)
+   //     }
+   // }
+   // var obj2={
+   //     num:5,
+   //     fn:function () {
+   //         setTimeout(()=>{
+   //             console.log(this.num);
+   //         },300)
+   //     }
+   // }
+   // obj2.fn()//5
+    var num=4
+    var obj={
+        num:3,
+        fn:function(){
+
+                console.log(this.num)
+
+
+        }
+    }
+    obj.fn()
+ </script>
+</html>

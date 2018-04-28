@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/post" method="post" enctype="multipart/form-data">
+        用户名：<input type="text" name="user"><br>
+        密码：<input type="password" name="pass"><br>
+        上传文件：<input type="file" name="files">
+        <input type="submit" value="提交">
+    </form>
+
+    <button id="btn">发送ajax</button>
+</body>
+<script src="ajax.js"></script>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:50px;
+            height: 50px;
+            background-color: #000;
+            border-radius: 50%;
+            margin-left: 0;
+        }
+        .ball1{
+            background-color: red;
+        }
+        .ball2{
+            background-color: blue;
+        }
+        .ball3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="ball1"></div>
+<div class="ball2"></div>
+<div class="ball3"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var ball1=$(".ball1");
+    var ball2=$(".ball2");
+    var ball3=$(".ball3");
+    console.log(Promise)
+    //Promise是一个容器,内部存储的是未来会出现的函数
+    //Promise经常用于处理异步回调层层嵌套
+    //resolve():传输异步处理结果
+    //Promise的原型上有一个then用于接收resolve传输的值
+    // var promise=new Promise(function (resolve, reject) {
+    //     setTimeout(function () {
+    //         var num=Math.random();
+    //         console.log(num);
+    //         resolve(num);
+    //     },2000)
+    //
+    // })
+    // promise.then(function (num1) {
+    //     console.log(num1)
+    // })
+
+    // function ballMove(ball,dis) {
+    //     return new Promise(function (resolve,reject) {
+    //         ball.animate({
+    //             marginLeft:dis
+    //         },1000,function () {
+    //             resolve()
+    //         })
+    //     })
+    // }
+    // ballMove(ball1,300).then(function () {
+    //     return ballMove(ball2,300)
+    // }).then(function () {
+    //     return ballMove(ball3,300)
+    // }).then(function () {
+    //     return ballMove(ball3,0)
+    // }).then(function () {
+    //     return ballMove(ball2,0)
+    // }).then(function () {
+    //     return ballMove(ball1,0)
+    // })
+
+
+    //reject:输出异步处理的错误, 该错误可以在then的第二个回调中接受
+    //也可以使用Promise原型上的catch方法接受
+    function rand() {
+        return new Promise(function (resolve,reject) {
+            setTimeout(function () {
+                var num = Math.random()*2;
+                if (num > 1) {
+                    resolve(num);
+                } else{
+                    var err = new Error(`数值错误,${num}不大于1`);
+                    resolve(err);
+                }
+            },500)
+        })
+    }
+    // rand().then(function (num) {
+    //     console.log(num);
+    // }),function (err) {
+    //     console.error(err);
+    // }
+    // rand().then(function (num) {
+    //     console.log(num);
+    // }).catch(function (err) {
+    //     console.error(err);
+    // })
+/*
+将ajax请求原生的改为Promise
+成功结果通过then获得
+失败通过catch输出
+ */
+// console.dir(Promise)
+//     //console.log(fetch());
+//     var p1=new Promise(function (resolve,reject) {
+//
+//     })
+//     console.log(p1);
+    /*
+    Promise如果内部异步并没有完成,仍处于pending的状态
+    如果异步操作是成功的就会进入resloved状态
+    反之,失败会进入rejected的状态
+     */
+    // var r=rand();
+    // r.then(function (num) {
+    //     console.log(num);
+    //     console.log(r);
+    // }).catch(function (err) {
+    //     console.log(r);
+    //     console.log(err);
+    // })
+    /*
+    fetch:window对象中所定义的ajax请求方法
+    fetch是经过Promise处理的异步操作
+    请求的结果保存在一个promise中
+     */
+    // fetch('data.json')
+    //     .then(function (res) {
+    //         console.log(res)
+    //         return res.json()
+    //     }).then(function (json) {
+    //     console.log(json);
+    // }).catch(function (err) {
+    //     console.error(err)
+    // })
+
+    //封装ajax
+    function ajax(url) {
+        return new Promise(function (resolve,reject) {
+            var ajax=new XMLHttpRequest();
+            ajax.open("GET",url,true);
+            ajax.send();
+            ajax.onreadystatechange=function () {
+                if (ajax.readyState!==4){
+                    return
+                }
+                if (ajax.status==200){
+                    resolve(ajax.responseText);
+                }else{
+                    reject(new  Error(ajax.status))
+                }
+            }
+        })
+
+    }
+    /*
+    catch:会接收在链式结构中内部出现的任何错误
+     */
+    // ajax('data.json').then(function (res) {
+    //     console.log(res);
+    //     return new Promise(function (resolve, reject) {
+    //         resolve(JSON.parse(res))
+    //     })
+    // }).then(function (obj) {
+    //     console.log(obj);
+    // })
+    //     .catch(err=>
+    //     console.error(err)
+    //     )
+    /*
+    Promise.all
+    同时处理多个Promise对象,并把结果统一返回
+     */
+    function p1() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("p1完成");
+                resolve('个人信息成功获取');
+            },1000)
+        })
+    }
+    function p2() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("p2完成");
+                resolve("好友列表获取成功")
+            },3000)
+        })
+    }
+    // Promise.all([p1(),p2()])
+    //     .then(function (msg) {
+    //         console.log(msg)
+    //     })
+
+    //Promise.race也可以同时处理多个Promise,但是只要有一个任务完成,就会输出该项的结果,其它
+    //不再输出
+    Promise.race([p1(),p2()])
+        .then(function (msg) {
+            console.log(msg)
+        })
+</script>
+</html>

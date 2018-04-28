@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+姓名:<input type="text" id="name">
+年龄:<input type="text" id="age">
+<button id="btn">添加</button>
+  <table border="1" class="tab">
+
+  </table>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var tab=document.querySelector(".tab")
+    $.ajax({
+        type:'get',
+        url:"/aa",
+        success:function (res) {
+            console.log(res)
+            for(var i=0;i<res.length;i++){
+                tab.innerHTML+="<tr><th>"+res[i]["user"]+"</th><td>"+res[i]["age"]+"</td><td class='dele'>删除</td><td class='update'>更改</td></tr>"
+            }
+            var dele=document.querySelectorAll(".dele");
+            var update=document.querySelectorAll(".update");
+            for (var i=0;i<dele.length;i++){
+                dele[i].index=i;
+                dele[i].onclick=function () {
+                    console.log(res[this.index]["_id"]);
+                    $.ajax({
+                        type:'get',
+                        url:"/dele?id="+res[this.index]["_id"],
+                        success:function (res) {
+                            history.go(0)
+                        }
+                    })
+                }
+            }
+        }
+    })
+ $("#btn").click(function () {
+     $.ajax({
+         type:"get",
+         url:"/add?nam="+$("#name").val()+"&age="+$("#age").val(),
+         success:function (res) {
+             history.go(0)
+         }
+     })
+ })
+</script>
+</html>
